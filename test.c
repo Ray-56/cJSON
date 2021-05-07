@@ -25,7 +25,7 @@
 #include <string.h>
 #include "cJSON.h"
 
-/* Used by some code below as an example datatype. */
+/* Used by some code below as an example datatype. 示例数据的数据类型 */
 struct record
 {
     const char *precision;
@@ -39,10 +39,11 @@ struct record
 };
 
 
-/* Create a bunch of objects as demonstration. */
+/* Create a bunch of objects as demonstration.
+   创建多个对象作为演示 */
 static int print_preallocated(cJSON *root)
 {
-    /* declarations */
+    /* declarations 声明 */
     char *out = NULL;
     char *buf = NULL;
     char *buf_fail = NULL;
@@ -52,13 +53,15 @@ static int print_preallocated(cJSON *root)
     /* formatted print */
     out = cJSON_Print(root);
 
-    /* create buffer to succeed */
-    /* the extra 5 bytes are because of inaccuracies when reserving memory */
+    /* create buffer to succeed
+       创建缓冲区用于内存申请成功使用 */
+    /* the extra 5 bytes are because of inaccuracies when reserving memory
+       额外的5个字节是由于保留内存时的不准确性 */
     len = strlen(out) + 5;
-    buf = (char*)malloc(len);
+    buf = (char*)malloc(len); /* memory + allocate = malloc */
     if (buf == NULL)
     {
-        printf("Failed to allocate memory.\n");
+        printf("Failed to allocate memory.\n"); /* allocate 分配 */
         exit(1);
     }
 
@@ -127,7 +130,7 @@ static void create_objects(void)
         "Friday",
         "Saturday"
     };
-    /* Our matrix: */
+    /* Our matrix(矩阵): */
     int numbers[3][3] =
     {
         {0, -1, 0},
@@ -162,7 +165,8 @@ static void create_objects(void)
     };
     volatile double zero = 0.0;
 
-    /* Here we construct some JSON standards, from the JSON site. */
+    /* Here we construct some JSON standards, from the JSON site.
+       从 JSON 的网站构建一些 JSON 标准 */
 
     /* Our "Video" datatype: */
     root = cJSON_CreateObject();
